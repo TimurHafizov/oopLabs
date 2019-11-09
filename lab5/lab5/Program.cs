@@ -118,14 +118,14 @@ namespace lab1
         static void UserFill(ref int[] arr)
         {
             for (int i = 0; i < arr.Length; i++)
-                arr[i] = ReadInt("Введите число");
+                arr[i] = ReadInt($"Введите элемент номер {i + 1}");
         }
 
         static void UserFill(ref int[,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
                 for (int j = 0; j < arr.GetLength(1); j++)
-                    arr[i, j] = ReadInt("Введите число");
+                    arr[i, j] = ReadInt($"Введите элемент номер [{i + 1},{j + 1}]"); ;
         }
 
         static void UserFill(ref int[][] arr)
@@ -245,12 +245,11 @@ namespace lab1
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < m; j++)
                 {
-                    s = "Введите число[" + (i + 1) + "," + (3 * j + 3) + "]";
+                    s = "Введите элемент номер [" + (i + 1) + "," + (3 * j + 3) + "]";
                     arr[i, j] = ReadInt(s);
                 }
-
         }
-        static void ChoiceDelete(ref int[,] arr, int sizeRow, int sizeColumn)
+        static void ChoiceAdd(ref int[,] arr, int sizeRow, int sizeColumn)
         {
             if (Exist(arr))
             {
@@ -260,11 +259,12 @@ namespace lab1
                 int[,] newArr2 = CreateMatrix2(sizeRow, newSizeColumn2);//массив который вводит пользователь
                 if (sizeColumn >= 2)
                 {
-                    Console.WriteLine("Введите числа, которые встанут на место добавленных столбцов");
+                    Console.WriteLine("Введите элементы, которые встанут на место добавленных столбцов");
                     int choice;
                     Console.WriteLine(@"Введите:
 1 для заполения массива случайными числами
-2 для ввода вручную");
+2 для ввода вручную
+3 для ввода нулей, для наглядности");
                     choice = ReadRange(2);
                     switch (choice)
                     {
@@ -278,22 +278,22 @@ namespace lab1
                             }
                             break;
                         case 2: UserFill2(ref newArr2, sizeRow, newSizeColumn2); break;
+                        case 3:
+                            //обнуление выходного массива для наглядности
+                            for (int i = 0; i < sizeRow; i++)
+                            {
+                                for (int j = 0; j < newSizeColumn; j++)
+                                {
+                                    newArr[i, j] = 0;
+                                }
+                            }
+                            break;
                     }
                 }
                 else
                 {
-                    ShowMsg("Строк не хватает, чтобы были четные");
+                    ShowError("Строк не хватает, чтобы были четные");
                 }
-                //разобраться с этой штукой
-
-                //обнуление выходного массива для наглядности
-                //for (int i = 0; i < sizeRow; i++)
-                //{
-                //    for (int j = 0; j < newSizeColumn; j++)
-                //    {
-                //        newArr[i, j] = 0;
-                //    }
-                //}
 
                 //nechet
                 for (int i = 0; i < sizeRow; i++)
@@ -336,14 +336,9 @@ namespace lab1
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 PrintArray(newArr);
                 Console.ResetColor();
-
             }
             else ShowError("Массив пуст");
         }
-
-
-
-
 
         static void ChoiceDelete(ref int[][] arr, int lines)
         {
@@ -392,14 +387,12 @@ namespace lab1
                 }
             }
         }
-
         static int[] CreateVector(int size)
         {
             int[] arr = new int[size];
             Fill(ref arr);
             return arr;
         }
-
         static int[,] CreateMatrix(int sizeRow = 0, int sizeColumn = 0)
         {
             int[,] sub;
@@ -438,7 +431,7 @@ namespace lab1
         {
             for (int i = 0; i < lines; i++)
             {
-                int colomn = RandInt();
+                int colomn = RandInt(1, 10);
                 jag[i] = new int[colomn];
             }
         }
@@ -512,7 +505,7 @@ namespace lab1
                 switch (choice)
                 {
                     case 1: PrintArray(arr); break;
-                    case 2: ChoiceDelete(ref arr, sizeRow, sizeColumn); break;
+                    case 2: ChoiceAdd(ref arr, sizeRow, sizeColumn); break;
                 }
             } while (choice != 3);
         }
@@ -528,7 +521,7 @@ namespace lab1
             do
             {
                 Console.WriteLine(@"Введите 1 для печати массива
-Введите 2 для удаления строк
+Введите 2 для добавления строк
 Введите 3 для выхода");
                 choice = ReadRange(3);
                 switch (choice)
@@ -541,6 +534,7 @@ namespace lab1
 
         static void Main(string[] args)
         {
+            ShowMsg("Лаборатоная работа №5");
             int choice;
             do
             {

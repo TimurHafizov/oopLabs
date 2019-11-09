@@ -1,14 +1,22 @@
 ﻿using System;
 
-
-//Удалить из массива первую строку, в которой есть не менее 3 символов цифр.
-
-
 namespace lab6
 {
     class Program
     {
-        static Random rand = new Random();
+         Random rand = new Random();
+        static void ShowError(string msg)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(msg);
+            Console.ResetColor();
+        }
+        static void ShowMsg(string msg)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(msg);
+            Console.ResetColor();
+        }
         static int ReadInt(string msg = "")
         {
             if (msg != "") Console.WriteLine(msg);
@@ -102,9 +110,7 @@ namespace lab6
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed; 
-                Console.WriteLine("Строка пуста!");
-                Console.ResetColor();
+                ShowError("Строка пуста!");
             }
             
         }
@@ -133,16 +139,15 @@ namespace lab6
             }
             if (number == -1)
             {
-                Console.WriteLine("В массиве нет строк, в которых 3 и более цифр");
+                ShowError("В массиве нет строк, в которых 3 и более цифр");
             }
             else
             {
                 Array.Copy(arr, 0, arr2, 0, number);
                 Array.Copy(arr, number + 1, arr2, number, arr.Length - number - 1);
                 arr = arr2;
-                Console.WriteLine("Удалена первая встретившаяся строка, в которой не менее 3 цифр");
+                ShowMsg("Удалена первая встретившаяся строка, в которой не менее 3 цифр");
             }
-            //Console.WriteLine("Удалена 1 строка, в которой не менее 3 цифр");
         }
 
 
@@ -162,9 +167,9 @@ namespace lab6
             string str = "";
             switch (RandInt(0, 6))
             {
-                case 0: str = "Кек! как дела? как мать?как отец!"; break;
-                case 1: str = "Я смотрю ривердейл?да смотрю!нет, не смотрю."; break;
-                case 2: str = "Я написала математику! Погода была ясная. Прочитай книгу! Какая красивая роза!"; break;
+                case 0: str = "как дела? как мать? как отец!"; break;
+                case 1: str = "Ты забудешь обо мне! на сиреневой луне! (с) Леонид Агутин."; break;
+                case 2: str = "Погода была ясная. Прочитай книгу! Какая красивая роза!"; break;
                 case 3: str = @"Так хочу тебя узнать ближе я, 
 Остальное сейчас лишнее.
 Я Хочу тебя узнать, почувствовать,
@@ -173,7 +178,10 @@ namespace lab6
 Остальное сейчас лишнее.
 Я Хочу тебя узнать, почувствовать,
 Что мы живы!"; break;
-                case 5: str = "А может просто потеряться, впрочем, как и миллионы В мире цифрового глянца под дождями из 'Айфонов', В его обойме с каждым днём все больше патронов! Я пробовал бороться вместо этого прошел пробы."; break;
+                case 5: str = @"А может просто потеряться, впрочем, как и миллионы. 
+В мире цифрового глянца под дождями из 'Айфонов'!
+В его обойме с каждым днём все больше патронов!
+Я пробовал бороться вместо этого прошел пробы."; break;
                 case 6: str = @"Что такое осень - это небо.
 Плачущее небо под ногами!
 В лужах разлетаются птицы с облаками.
@@ -199,7 +207,6 @@ namespace lab6
                     case 1: Print(arr); break;
                     case 2: DeleteOneString(ref arr); break;
                 }
-
             } while (choice != 3);
         }
 
@@ -207,15 +214,11 @@ namespace lab6
         {
             if (Exist(str))
             {
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine(str);
-                Console.ResetColor();
+                ShowMsg(str);
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed; 
-                Console.WriteLine("Строка пуста!");
-                Console.ResetColor();
+                ShowError("Строка пуста!");
             }
         }
 
@@ -260,6 +263,7 @@ namespace lab6
                     {
                         words = Remove(words, i);
                         znaki = Remove2(znaki, i);
+                        i--;
                         size2--;
                     }
                 }
@@ -268,13 +272,13 @@ namespace lab6
                 {
                     str += words[i];
                 }
-                Console.WriteLine("Отредактированная строка:");
+                Console.WriteLine("Строка после удаления восклицательных предложений:");
                 Print(str);
                 return str;
             }
             else
             {
-                Console.WriteLine("Строка пуста");
+                ShowError("Строка пуста");
                 return "";
             }
            
@@ -331,7 +335,6 @@ namespace lab6
             {
                 str = RandStr();
             }
-
             do
             {
                 Console.WriteLine(@"Введите:
@@ -344,12 +347,11 @@ namespace lab6
                     case 1: Print(str); break;
                     case 2: str = DeleteExclamation(str); break;
                 }
-
             } while (choice != 3);
         }
-
         static void Main(string[] args)
         {
+            ShowMsg("Лаборатоная работа №6");
             int choice;
             do
             {
