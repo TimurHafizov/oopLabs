@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="lab9.Program" Collapsed="true">
+    <Position X="1.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAQAAAAAAQAAIAAAAAAAgABAAAAAAAABABgAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="lab9.Time" Collapsed="true">
+    <Position X="3.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAABAAAAAQAAQE1ACAIgAAAQAEAIYAAABAAACAAAA=</HashCode>
+      <FileName>Time.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.662" />
+  </Class>
+  <Class Name="lab9.TimeArray" Collapsed="true">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAICAAAAAgAAEiIAAAAAAgQAEAIEAgAAAAAAgABA=</HashCode>
+      <FileName>TimeArray.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
