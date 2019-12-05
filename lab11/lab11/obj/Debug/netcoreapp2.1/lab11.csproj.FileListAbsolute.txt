@@ -1,0 +1,14 @@
+C:\Users\hafiz\source\repos\lab11\lab11\bin\Debug\netcoreapp2.1\lab11.deps.json
+C:\Users\hafiz\source\repos\lab11\lab11\bin\Debug\netcoreapp2.1\lab11.runtimeconfig.json
+C:\Users\hafiz\source\repos\lab11\lab11\bin\Debug\netcoreapp2.1\lab11.runtimeconfig.dev.json
+C:\Users\hafiz\source\repos\lab11\lab11\bin\Debug\netcoreapp2.1\lab11.dll
+C:\Users\hafiz\source\repos\lab11\lab11\bin\Debug\netcoreapp2.1\lab11.pdb
+C:\Users\hafiz\source\repos\lab11\lab11\obj\Debug\netcoreapp2.1\lab11.csprojAssemblyReference.cache
+C:\Users\hafiz\source\repos\lab11\lab11\obj\Debug\netcoreapp2.1\lab11.csproj.CoreCompileInputs.cache
+C:\Users\hafiz\source\repos\lab11\lab11\obj\Debug\netcoreapp2.1\lab11.AssemblyInfoInputs.cache
+C:\Users\hafiz\source\repos\lab11\lab11\obj\Debug\netcoreapp2.1\lab11.AssemblyInfo.cs
+C:\Users\hafiz\source\repos\lab11\lab11\obj\Debug\netcoreapp2.1\lab11.dll
+C:\Users\hafiz\source\repos\lab11\lab11\obj\Debug\netcoreapp2.1\lab11.pdb
+C:\Users\hafiz\source\repos\lab11\lab11\bin\Debug\netcoreapp2.1\InputCheckerLib.dll
+C:\Users\hafiz\source\repos\lab11\lab11\bin\Debug\netcoreapp2.1\MyLib.dll
+C:\Users\hafiz\source\repos\lab11\lab11\obj\Debug\netcoreapp2.1\lab11.csproj.CopyComplete
