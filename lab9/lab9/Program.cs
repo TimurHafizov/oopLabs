@@ -94,8 +94,8 @@ namespace lab9
             CheckInput(out min, "");
             time2.Initialization(hours, min);
             Console.WriteLine();
-            Console.WriteLine("Объект 3" + time3);
-            Console.WriteLine("Объект 2" + time2);
+            Console.WriteLine("Объект 3 " + time3);
+            Console.WriteLine("Объект 2 " + time2);
 
             Console.WriteLine("Результат вычитания 2-го из 3-го объекта обычным методом: ");
             ShowGreen(time3.MinusTime(time2).ToString());
@@ -273,8 +273,9 @@ namespace lab9
 6. Получить количество созданных массивов.
 7. Показать максимальное время.
 8. Перезаписать значение в элементе массива
+9. Показать значение элемента по номеру.
  
-9. Выход");
+10. Выход");
                 CheckInput(out int choise);
                 switch (choise)
                 {
@@ -287,12 +288,18 @@ namespace lab9
                         CheckInput(out int size);
                         array = new TimeArraye(0, size);
                         ShowGreen("Массив создан");
+                        Console.ForegroundColor = ConsoleColor.DarkGreen; // устанавливаем цвет
+                        array.Show();
+                        Console.ResetColor(); // сбрасываем в стандартный
                         break;
                     case 3:
                         Console.Write("На сколько элементов создать массив? ");
                         CheckInput(out size);
                         array = new TimeArraye(1, size);
                         ShowGreen("Массив создан");
+                        Console.ForegroundColor = ConsoleColor.DarkGreen; // устанавливаем цвет
+                        array.Show();
+                        Console.ResetColor(); // сбрасываем в стандартный
                         break;
                     case 4:
                         Console.ForegroundColor = ConsoleColor.DarkGreen; // устанавливаем цвет
@@ -330,8 +337,22 @@ namespace lab9
                     case 8:
                         try
                         {
-                            Console.Write("Какой элемент перезаписать?");
-                            CheckInput(out int k);
+                            int k;
+                            while (true)
+                            {
+                                Console.Write("Какой элемент перезаписать?");
+                                CheckInput(out k);
+                                if (k > 0 && k < array.Size)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    ShowRed("Элемента под таким номером нет!");
+                                }
+                                
+                            }
+
                             int khour = 0, kmin = 0;
                             InputHoursMin(ref khour, ref kmin);
                             array[k - 1].Hours = khour;
@@ -346,6 +367,24 @@ namespace lab9
                         }
                         break;
                     case 9:
+                        int b;
+                        while (true)
+                        {
+                            Console.Write("Какой элемент показать?");
+                            CheckInput(out b);
+                            if (b > 0 && b < array.Size)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                ShowRed("Элемента под таким номером нет!");
+                            }
+                        }
+                        
+                        ShowGreen(array[b - 1].ToString());
+                        break;
+                    case 10:
                         flag = !flag;
                         break;
                     default:

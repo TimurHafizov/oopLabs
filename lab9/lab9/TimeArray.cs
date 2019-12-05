@@ -7,7 +7,7 @@ namespace lab9
 {
 
 
-    class TimeArray
+    class TimeArraye
     {
         private Time[] arr;
         private int size;
@@ -96,7 +96,7 @@ namespace lab9
             int hours, min;
             for (int i = 0; i < Size; i++)
             {
-                Console.WriteLine("Введите " + i + " элемент: ");
+                Console.WriteLine("Введите " + i + "-ый элемент: ");
                 Console.Write("Часы: ");
                 CheckInput(out hours);
                 Console.Write("Минуты: ");
@@ -169,7 +169,6 @@ namespace lab9
             Array.Sort(time);
             Console.WriteLine($"{time[time.Length - 1]}");
         }
-
 
         public override string ToString()
         {

@@ -133,18 +133,28 @@ namespace lab9
         }//перегрузка инкремента
         public static Time operator --(Time time)
         {
-            time.Min--;
-            if (time.Min < 0)
+            if ((bool)time)
             {
-                time.Hours--;
-                time.Min = 59;
+                time.Min--;
+
+                if (time.Min < 0)
+                {
+                    time.Hours--;
+                    time.Min = 59;
+                }
+                if (time.Hours < 0)
+                {
+                    Console.WriteLine("Часов меньше 0! Значение часов обнулено!");
+                    time.Hours = 0;
+                }
+                return time;
             }
-            if (time.Hours < 0)
+            else
             {
-                Console.WriteLine("Часов меньше 0! Значение часов обнулено!");
-                time.Hours = 0;
+                Console.WriteLine("Меньше некуда");
+                return time;
             }
-            return time;
+            
         }//перегрузка декремента
 
         public static explicit operator bool(Time time)
@@ -157,7 +167,7 @@ namespace lab9
             {
                 return true;
             }
-        }//существует ли обхект
+        }//существует ли что-то в объекте
 
         public static Time operator +(Time time, int val)
         {
@@ -202,15 +212,16 @@ namespace lab9
             {
                 Time time = obj as Time;
                 int hm1 = Hours * 60 + Min,
-                    hm2 = time.Hours * 60 + Min;
+                    hm2 = time.Hours * 60 + time.Min;
                 return hm1.CompareTo(hm2);
             }
-            throw new Exception();
+            else
+                throw new Exception();
         }//для сортировки
         public override string ToString()
         {
             return Hours + ":" + Min;
-        }//для вывода в консоль
+        }
         public override int GetHashCode()
         {
             return (Hours * 60 + Min).GetHashCode();

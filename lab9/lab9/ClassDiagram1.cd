@@ -13,9 +13,8 @@
       <HashCode>AAgAABAAAAAQAAQE1ACAIgAAAQAEAIYAAABAAACAAAA=</HashCode>
       <FileName>Time.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.662" />
   </Class>
-  <Class Name="lab9.TimeArray" Collapsed="true">
+  <Class Name="lab9.TimeArraye" Collapsed="true">
     <Position X="5.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAICAAAAAgAAEiIAAAAAAgQAEAIEAgAAAAAAgABA=</HashCode>
