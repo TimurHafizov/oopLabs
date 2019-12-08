@@ -501,14 +501,14 @@ namespace lab11
                         case 14:
                             if (vs != null)
                             {
-                                vs.TCollLinkListProd();
+                                vs.TCollLinkListTran();
                                 vs.TCollLinkListString();
                             }
                             break;
                         case 15:
                             if (vs != null)
                             {
-                                vs.TCollDictProdAvtomobileKey();
+                                vs.TCollDictTranAvtomobileKey();
                                 vs.TCollDictStringAvtomobileKey();
                             }
                             break;
@@ -523,7 +523,7 @@ namespace lab11
                             flag = !flag;
                             break;
                         default:
-                            Console.WriteLine("Неопознанное значение!");
+                            Output.ShowRed("Неопознанное значение!");
                             break;
                     }
                     Console.WriteLine();

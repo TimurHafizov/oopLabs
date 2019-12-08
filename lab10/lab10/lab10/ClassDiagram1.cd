@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="lab10.Avtomobile">
-    <Position X="0.75" Y="3.25" Width="1.5" />
+    <Position X="0.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAABAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEgAAgAAAAIAAAAIAAAAABAEAAABA=</HashCode>
       <FileName>Avtomobile.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="lab10.Express">
-    <Position X="8" Y="3" Width="1.5" />
+    <Position X="8" Y="2.25" Width="1.5" />
     <InheritanceLine Type="lab10.Rain" FixedFromPoint="true">
       <Path>
-        <Point X="6.5" Y="4.062" />
-        <Point X="8" Y="4.062" />
+        <Point X="6.5" Y="3.562" />
+        <Point X="8" Y="3.562" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAEAgAAA=</HashCode>
+      <HashCode>ACAAAAAAAAQAAAAEgAAAAAAAAAAAAIAAAAAAAEAgABA=</HashCode>
       <FileName>Express.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -32,15 +32,15 @@
   <Class Name="lab10.Transport">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQABAAAAAABAAAAAAAACAAAAEAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAQEhAAAAAABAAAAAYAACAAAAEgAABA=</HashCode>
       <FileName>Transport.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="lab10.Rain">
-    <Position X="5" Y="2.75" Width="1.5" />
+    <Position X="5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAAEAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAQAAAEgAAAAAAAAAAIAIAACAAAAEAAABA=</HashCode>
       <FileName>Rain.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

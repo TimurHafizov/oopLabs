@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace lab11
 {
-    
+
     class TestCollection
     {
         static Random rand = new Random();
@@ -24,8 +24,8 @@ namespace lab11
             for (int i = 0; i < size; i++)
             {
                 string bodyType = bodyTypes[rand.Next(0, 4)];
-                int speed = rand.Next(0, 400);
-                int countMen = rand.Next(1, 1000);
+                int speed = rand.Next(3, 10000);
+                int countMen = rand.Next(2, 10000);
 
                 if (generation != 1)
                 {
@@ -38,16 +38,13 @@ namespace lab11
                 }
                 Avtomobile t = new Avtomobile(bodyType, speed, countMen);
 
-                Transports.AddLast(t.BaseTransport());//двусвязный список транспорта
+                Transports.AddLast(t.BaseTransport());//двунаправленный список транспорта
                 vs.AddLast(t.BaseTransport().ToString());//двусвязный список строк
                 keyValues.Add(Transports.Last.Value, t);//словарь транспорт автомобиль
                 stringValues.Add(vs.Last.Value, t);//словарь строка автомобиль
             }
         }
-
-        #region Test Method "Contain" on linked list
-
-        public long[] TCollLinkListProd()
+        public long[] TCollLinkListTran()
         {
             Output.ShowGreen("Тест метода Contains по двунаправленному списку <Transport>");
             Transport first, center, last, empty;
@@ -63,41 +60,61 @@ namespace lab11
             empty = new Transport();
             Stopwatch t1 = new Stopwatch();
             t1.Start();
-            if (Transports.Contains(first))
-            {
-                Console.WriteLine();
-            }
+            bool ok1 = Transports.Contains(first);
             t1.Stop();
-            vs[0] = t1.ElapsedTicks;
-            Output.ShowGreen(t1.ElapsedTicks + " ticks -- Время нахождения первого элемента.");
+            if (ok1)
+            {
+                Output.ShowGreen(t1.ElapsedTicks + " - Время нахождения первого элемента.");
+                vs[0] = t1.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t1.ElapsedTicks * (-1)) + " - Время нахождения первого элемента.");
+                vs[0] = (t1.ElapsedTicks * (-1));
+            }
 
             t1.Restart();
-            if (Transports.Contains(center))
-            {
-                Console.WriteLine();
-            }
+            ok1 = Transports.Contains(center);
             t1.Stop();
-            vs[1] = t1.ElapsedTicks;
-            Output.ShowGreen(t1.ElapsedTicks + " ticks -- Время нахождения серединного элемента.");
+            if (ok1)
+            {
+                Output.ShowGreen(t1.ElapsedTicks + " - Время нахождения центрального элемента.");
+                vs[1] = t1.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t1.ElapsedTicks * (-1)) + " - Время нахождения центрального элемента.");
+                vs[1] = (t1.ElapsedTicks * (-1));
+            }
 
             t1.Restart();
-            if (Transports.Contains(last))
-            {
-                Console.WriteLine();
-            }
+            ok1 = Transports.Contains(last);
             t1.Stop();
-            vs[2] = t1.ElapsedTicks;
-            Output.ShowGreen(t1.ElapsedTicks + " ticks -- Время нахождения последнего элемента.");
+            if (ok1)
+            {
+                Output.ShowGreen(t1.ElapsedTicks + " - Время нахождения последнего элемента.");
+                vs[2] = t1.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t1.ElapsedTicks * (-1)) + " - Время нахождения последнего элемента.");
+                vs[2] = (t1.ElapsedTicks * (-1));
+            }
+
 
             t1.Restart();
-            if (!Transports.Contains(empty))
-            {
-                Console.WriteLine();
-            }
+            ok1 = Transports.Contains(empty);
             t1.Stop();
-            vs[3] = t1.ElapsedTicks;
-            Output.ShowGreen(t1.ElapsedTicks + " ticks -- Время нахождения несуществующего элемента.");
-
+            if (ok1)
+            {
+                Output.ShowGreen(t1.ElapsedTicks + " - Время нахождения не существующего элемента.");
+                vs[3] = t1.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t1.ElapsedTicks * (-1)) + " - Время нахождения не существующего элемента.");
+                vs[3] = (t1.ElapsedTicks * (-1));
+            }
             return vs;
         }
 
@@ -117,52 +134,74 @@ namespace lab11
             empty = "несуществующий элемент";
             Stopwatch t1 = new Stopwatch();
             t1.Start();
-            if (vs.Contains(first))
-            {
-                Console.WriteLine();
-            }
+            bool ok = vs.Contains(first);
             t1.Stop();
-            arr[0] = t1.ElapsedTicks;
-            Output.ShowGreen(t1.ElapsedTicks + " ticks -- Время нахождения первого элемента.");
+            if (ok)
+            {
+                Output.ShowGreen(t1.ElapsedTicks + " - Время нахождения первого элемента.");
+                arr[0] = t1.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t1.ElapsedTicks * (-1)) + " - Время нахождения первого элемента.");
+                arr[0] = t1.ElapsedTicks;
+            }
 
             t1.Restart();
-            if (vs.Contains(center))
-            {
-                Console.WriteLine();
-            }
+            ok = vs.Contains(center);
             t1.Stop();
-            arr[1] = t1.ElapsedTicks;
-            Output.ShowGreen(t1.ElapsedTicks + " ticks -- Время нахождения серединного элемента.");
+            if (ok)
+            {
+                Output.ShowGreen(t1.ElapsedTicks + " - Время нахождения центрального элемента.");
+                arr[1] = t1.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t1.ElapsedTicks * (-1)) + " - Время нахождения центрального элемента.");
+                arr[1] = t1.ElapsedTicks;
+            }
+
 
             t1.Restart();
-            if (vs.Contains(last))
-            {
-                Console.WriteLine();
-            }
+            ok = vs.Contains(last);
             t1.Stop();
-            arr[2] = t1.ElapsedTicks;
-            Output.ShowGreen(t1.ElapsedTicks + " ticks -- Время нахождения последнего элемента.");
+            if (ok)
+            {
+                Output.ShowGreen(t1.ElapsedTicks + " - Время нахождения последнего элемента.");
+                arr[2] = t1.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t1.ElapsedTicks * (-1)) + " - Время нахождения последнего элемента.");
+                arr[2] = t1.ElapsedTicks;
+            }
 
             t1.Restart();
-            if (!vs.Contains(empty))
-            {
-                Console.WriteLine();
-            }
+            ok = vs.Contains(empty);
             t1.Stop();
-            arr[3] = t1.ElapsedTicks;
-            Output.ShowGreen(t1.ElapsedTicks + " ticks -- Время нахождения несуществующего элемента.");
+            if (ok)
+            {
+                Output.ShowGreen(t1.ElapsedTicks + " - Время нахождения не существущего элемента.");
+                arr[3] = t1.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t1.ElapsedTicks * (-1)) + " - Время нахождения не существующего элемента.");
+                arr[3] = t1.ElapsedTicks;
+            }
 
             Console.WriteLine();
 
             return arr;
         }
-        #endregion
 
-        #region Test Method "ContainKey" in Dictionary 
-        public long[] TCollDictProdAvtomobileKey()
+        public long[] TCollDictTranAvtomobileKey()
         {
             Output.ShowGreen("Тест метода ContainKey по словарю <Transport,Avtomobile>");
-            Transport first = new Transport(11, 11), center = new Transport(12, 12), last = new Transport(13, 13), empty;
+            Transport first = new Transport(),
+                center = new Transport(),
+                last = new Transport(),
+                empty;
             long[] vs = new long[4];
             int k = 0;
             foreach (var item in keyValues)
@@ -181,51 +220,71 @@ namespace lab11
                 }
                 k++;
             }
-            empty = new Transport();
+            empty = new Transport(100000000, 100000000);//такого элемента нет тк элементы рандомятся с меньшим диапазоном
 
             Stopwatch t2 = new Stopwatch();
             t2.Start();
-            if (keyValues.ContainsKey(first))
-            {
-                Console.WriteLine();
-            }
+            bool ok = keyValues.ContainsKey(first);
             t2.Stop();
-            vs[0] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре первого элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t2.ElapsedTicks + " - время поиска в словаре первого элемента");
+                vs[0] = t2.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t2.ElapsedTicks * (-1)) + " - время поиска в словаре первого элемента");
+                vs[0] = t2.ElapsedTicks;
+            }
 
             t2.Restart();
-            if (keyValues.ContainsKey(center))
-            {
-                Console.WriteLine();
-            }
+            ok = keyValues.ContainsKey(center);
             t2.Stop();
-            vs[1] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре cрединного элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t2.ElapsedTicks + " - время поиска в словаре центрального элемента");
+                vs[1] = t2.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t2.ElapsedTicks * (-1)) + " - время поиска в словаре центрального элемента");
+                vs[1] = t2.ElapsedTicks;
+            }
 
             t2.Restart();
-            if (keyValues.ContainsKey(last))
-            {
-                Console.WriteLine();
-            }
+            ok = keyValues.ContainsKey(last);
             t2.Stop();
-            vs[2] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре последнего элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t2.ElapsedTicks + " - время поиска в словаре последнего элемента");
+                vs[2] = t2.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t2.ElapsedTicks * (-1)) + " - время поиска в словаре последнего элемента");
+                vs[2] = t2.ElapsedTicks;
+            }
 
             t2.Restart();
-            if (!keyValues.ContainsKey(empty))
-            {
-                Console.WriteLine();
-            }
+            ok = keyValues.ContainsKey(empty);
             t2.Stop();
-            vs[3] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре несуществующего элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t2.ElapsedTicks + " - время поиска в словаре не существующего элемента");
+                vs[3] = t2.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t2.ElapsedTicks * (-1)) + " - время поиска в словаре не существующего элемента");
+                vs[3] = t2.ElapsedTicks;
+            }
 
             return vs;
         }
 
         public long[] TCollDictStringAvtomobileKey()
         {
-            Output.ShowGreen("Тест метода ContainKey по словарю <Transport,Avtomobile>");
+            Output.ShowGreen("Тест метода ContainKey по словарю <string, Avtomobile>");
             string first = "", center = "", last = "", empty;
             long[] vs = new long[4];
             int k = 0;
@@ -249,55 +308,71 @@ namespace lab11
 
             Stopwatch t2 = new Stopwatch();
             t2.Start();
-            if (stringValues.ContainsKey(first))
-            {
-                Console.WriteLine();
-            }
+            bool ok = stringValues.ContainsKey(first);
             t2.Stop();
-            vs[0] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре первого элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t2.ElapsedTicks + " - время поиска в словаре первого элемента");
+                vs[0] = t2.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t2.ElapsedTicks * (-1)) + " - время поиска в словаре первого элемента");
+                vs[0] = t2.ElapsedTicks;
+            }
+
 
             t2.Restart();
-            if (stringValues.ContainsKey(center))
-            {
-                Console.WriteLine();
-            }
+            ok = stringValues.ContainsKey(center);
             t2.Stop();
-            vs[1] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре срединного элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t2.ElapsedTicks + " - время поиска в словаре центрального элемента");
+                vs[1] = t2.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t2.ElapsedTicks * (-1)) + " - время поиска в словаре центрального элемента");
+                vs[1] = t2.ElapsedTicks;
+            }
 
             t2.Restart();
-            if (stringValues.ContainsKey(last))
-            {
-                Console.WriteLine();
-            }
+            ok = stringValues.ContainsKey(last);
             t2.Stop();
-            vs[2] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре последнего элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t2.ElapsedTicks + " - время поиска в словаре последнего элемента");
+                vs[2] = t2.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t2.ElapsedTicks * (-1)) + " - время поиска в словаре последнего элемента");
+                vs[2] = t2.ElapsedTicks;
+            }
 
             t2.Restart();
-            if (!stringValues.ContainsKey(empty))
-            {
-                Console.WriteLine();
-            }
+            ok = stringValues.ContainsKey(empty);
             t2.Stop();
-            vs[3] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре несуществующего элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t2.ElapsedTicks + " - время поиска в словаре не существующего элемента");
+                vs[3] = t2.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t2.ElapsedTicks * (-1)) + " - время поиска в словаре не существующего элемента");
+                vs[3] = t2.ElapsedTicks;
+            }
 
             return vs;
         }
 
-
-        #endregion
-
-        #region Test Method "ContainsValue" in Dictionary
-
         public long[] TCollDictProdAvtomobileValue()
         {
             Output.ShowGreen("Тест метода ConstainsValue для коллкекции с типами <Transport, Avtomobile>");
-            Avtomobile first = new Avtomobile("Седан"),
-                center = new Avtomobile("Кабриолет"),
-                last = new Avtomobile("Лимузин"),
+            Avtomobile first = new Avtomobile(),
+                center = new Avtomobile(),
+                last = new Avtomobile(),
                 empty = new Avtomobile();
             long[] vs = new long[4];
             int k = 0;
@@ -319,40 +394,63 @@ namespace lab11
             }
             Stopwatch t3 = new Stopwatch();
             t3.Start();
-            if (keyValues.ContainsValue(first))
-            {
-                Console.WriteLine();
-            }
+            bool ok = keyValues.ContainsValue(first);
             t3.Stop();
-            vs[0] = t3.ElapsedTicks;
-            Output.ShowGreen(t3.ElapsedTicks + " ticks -- Время поиска первого элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t3.ElapsedTicks + " - Время поиска первого элемента");
+                vs[0] = t3.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t3.ElapsedTicks * (-1)) + " - Время поиска первого элемента");
+                vs[0] = t3.ElapsedTicks;
+            }
+
 
             t3.Restart();
-            if (keyValues.ContainsValue(center))
-            {
-                Console.WriteLine();
-            }
+            ok = keyValues.ContainsValue(center);
             t3.Stop();
-            vs[1] = t3.ElapsedTicks;
-            Output.ShowGreen(t3.ElapsedTicks + " ticks -- Время поиска срединного элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t3.ElapsedTicks + " - Время поиска центрального элемента");
+                vs[1] = t3.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t3.ElapsedTicks * (-1)) + " - Время поиска центрального элемента");
+                vs[1] = t3.ElapsedTicks;
+            }
+
 
             t3.Restart();
-            if (keyValues.ContainsValue(last))
-            {
-                Console.WriteLine();
-            }
+            ok = keyValues.ContainsValue(last);
             t3.Stop();
-            vs[2] = t3.ElapsedTicks;
-            Output.ShowGreen(t3.ElapsedTicks + " ticks -- Время поиска последнего элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t3.ElapsedTicks + " - Время поиска последнего элемента");
+                vs[2] = t3.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t3.ElapsedTicks * (-1)) + " - Время поиска последнего элемента");
+                vs[2] = t3.ElapsedTicks;
+            }
+
 
             t3.Restart();
-            if (!keyValues.ContainsValue(empty))
-            {
-                Console.WriteLine();
-            }
+            ok = keyValues.ContainsValue(empty);
             t3.Stop();
-            vs[3] = t3.ElapsedTicks;
-            Output.ShowGreen(t3.ElapsedTicks + " ticks -- Время поиска несуществующего элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t3.ElapsedTicks + " - Время поиска не существующего элемента");
+                vs[3] = t3.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t3.ElapsedTicks * (-1)) + " - Время поиска не существующего элемента");
+                vs[3] = t3.ElapsedTicks;
+            }
 
             return vs;
         }
@@ -360,9 +458,9 @@ namespace lab11
         public long[] TCollDictStringAvtomobileValue()
         {
             Output.ShowGreen("Тест метода ConstainsValue для коллкекции с типами <string, Avtomobile>");
-            Avtomobile first = new Avtomobile("Cедан"),
-                center = new Avtomobile("Кабриолет"),
-                last = new Avtomobile("Лимузин"),
+            Avtomobile first = new Avtomobile(),
+                center = new Avtomobile(),
+                last = new Avtomobile(),
                 empty = new Avtomobile();
             long[] vs = new long[4];
             int k = 0;
@@ -382,175 +480,87 @@ namespace lab11
                 }
                 k++;
             }
+
             Stopwatch t3 = new Stopwatch();
             t3.Start();
-            if (stringValues.ContainsValue(first))
-            {
-                Console.WriteLine();
-            }
+            bool ok = stringValues.ContainsValue(first);
             t3.Stop();
-            vs[0] = t3.ElapsedTicks;
-            Output.ShowGreen(t3.ElapsedTicks + " ticks -- Время поиска первого элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t3.ElapsedTicks + " - Время поиска первого элемента");
+                vs[0] = t3.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t3.ElapsedTicks * (-1)) + " - Время поиска первого элемента");
+                vs[0] = t3.ElapsedTicks;
+            }
 
             t3.Restart();
-            if (stringValues.ContainsValue(center))
-            {
-                Console.WriteLine();
-            }
+            ok = stringValues.ContainsValue(center);
             t3.Stop();
-            vs[1] = t3.ElapsedTicks;
-            Output.ShowGreen(t3.ElapsedTicks + " ticks -- Время поиска срединного элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t3.ElapsedTicks + " - Время поиска центрального элемента");
+                vs[1] = t3.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t3.ElapsedTicks * (-1)) + " - Время поиска центрального элемента");
+                vs[1] = t3.ElapsedTicks;
+            }
 
             t3.Restart();
-            if (stringValues.ContainsValue(last))
-            {
-                Console.WriteLine();
-            }
+            ok = stringValues.ContainsValue(last);
             t3.Stop();
-            vs[2] = t3.ElapsedTicks;
-            Output.ShowGreen(t3.ElapsedTicks + " ticks -- Время поиска последнего элемента");
+            if (ok)
+            {
+                Output.ShowGreen(t3.ElapsedTicks + " - Время поиска последнего элемента");
+                vs[2] = t3.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t3.ElapsedTicks * (-1)) + " - Время поиска последнего элемента");
+                vs[2] = t3.ElapsedTicks;
+            }
 
             t3.Restart();
-            if (!stringValues.ContainsValue(empty))
-            {
-                Console.WriteLine();
-            }
+            ok = stringValues.ContainsValue(empty);
             t3.Stop();
-            vs[3] = t3.ElapsedTicks;
-            Output.ShowGreen(t3.ElapsedTicks + " ticks -- Время поиска несуществующего элемента");
-
+            if (ok)
+            {
+                Output.ShowGreen(t3.ElapsedTicks + " - Время поиска не существующего элемента");
+                vs[3] = t3.ElapsedTicks;
+            }
+            else
+            {
+                Output.ShowRed((t3.ElapsedTicks * (-1)) + " - Время поиска не существующего элемента");
+                vs[3] = t3.ElapsedTicks;
+            }
             return vs;
         }
-        #endregion
-        #region Test Method "ContainKey" in Dictionary 
-        public long[] TCollDictProdToyKey()
-        {
-            Output.ShowGreen("Тест метода ContainKey по словарю <Transport,Toy>");
-            Transport first = new Transport(11, 11), center = new Transport(12, 12), last = new Transport(13, 13), empty;
-            long[] vs = new long[4];
-            int k = 0;
-            foreach (var item in keyValues)
-            {
-                if (k == 0)
-                {
-                    first = item.Key;
-                }
-                if (k == keyValues.Count / 2 - 1)
-                {
-                    center = item.Key;
-                }
-                if (k == keyValues.Count - 1)
-                {
-                    last = item.Key;
-                }
-                k++;
-            }
-            empty = new Transport();
-
-            Stopwatch t2 = new Stopwatch();
-            t2.Start();
-            if (keyValues.ContainsKey(first))
-            {
-                Console.WriteLine();
-            }
-            t2.Stop();
-            vs[0] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре первого элемента");
-
-            t2.Restart();
-            if (keyValues.ContainsKey(center))
-            {
-                Console.WriteLine();
-            }
-            t2.Stop();
-            vs[1] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре cрединного элемента");
-
-            t2.Restart();
-            if (keyValues.ContainsKey(last))
-            {
-                Console.WriteLine();
-            }
-            t2.Stop();
-            vs[2] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре последнего элемента");
-
-            t2.Restart();
-            if (!keyValues.ContainsKey(empty))
-            {
-                Console.WriteLine();
-            }
-            t2.Stop();
-            vs[3] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре несуществующего элемента");
-
-            return vs;
-        }
-
-        public long[] TCollDictStringToyKey()
-        {
-            Output.ShowGreen("Тест метода ContainKey по словарю <Transport,Avtomobile>");
-            string first = "", center = "", last = "", empty;
-            long[] vs = new long[4];
-            int k = 0;
-            foreach (var item in stringValues)
-            {
-                if (k == 0)
-                {
-                    first = item.Key;
-                }
-                if (k == keyValues.Count / 2 - 1)
-                {
-                    center = item.Key;
-                }
-                if (k == keyValues.Count - 1)
-                {
-                    last = item.Key;
-                }
-                k++;
-            }
-            empty = "empty contains";
-
-            Stopwatch t2 = new Stopwatch();
-            t2.Start();
-            if (stringValues.ContainsKey(first))
-            {
-                Console.WriteLine();
-            }
-            t2.Stop();
-            vs[0] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре первого элемента");
-
-            t2.Restart();
-            if (stringValues.ContainsKey(center))
-            {
-                Console.WriteLine();
-            }
-            t2.Stop();
-            vs[1] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре срединного элемента");
-
-            t2.Restart();
-            if (stringValues.ContainsKey(last))
-            {
-                Console.WriteLine();
-            }
-            t2.Stop();
-            vs[2] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре последнего элемента");
-
-            t2.Restart();
-            if (!stringValues.ContainsKey(empty))
-            {
-                Console.WriteLine();
-            }
-            t2.Stop();
-            vs[3] = t2.ElapsedTicks;
-            Output.ShowGreen(t2.ElapsedTicks + " ticks -- время поиска в словаре несуществующего элемента");
-
-            return vs;
-        }
-
-        #endregion
     }
+    //было
+    //Stopwatch t = new Stopwatch();
+    //t.Start();
+    //if (stringValues.ContainsValue(empty))
+    //{
+    //    Console.Writeline();
+    //}
+    //t.Stop();
+    //Console.Writeline(t3.ElapsedTicks + " - Время поиска не существующего элемента");
+    //стало
+    //t3.Restart();
+    //ok = stringValues.ContainsValue(empty);
+    //t3.Stop();
+    //if (ok)
+    //{
+    //    Output.ShowGreen(t3.ElapsedTicks + " - Время поиска не существующего элемента");
+    //    vs[3] = t3.ElapsedTicks;
+    //}
+    //else
+    //{
+    //    Output.ShowRed((t3.ElapsedTicks * (-1)) + " - Время поиска не существующего элемента");
+    //    vs[3] = t3.ElapsedTicks;
+    //}
 }
