@@ -114,6 +114,32 @@ namespace Lib
             }
         }
 
+        public void AddAfterEl(int speed)
+        {
+             MyList cur = end;
+            while (cur != null)
+            {
+                Transport a = cur.data;
+                if (a.Speed == speed)
+                {
+                    int s = rand.Next(1, 1000);
+                    int cou = rand.Next(1, 1000);
+                    Transport c = new Transport(s, cou);
+                    MyList list = new MyList(c);
+                    list.next = cur.next;
+                    cur.next = list;
+                    count++;
+                    if (list.next == null)
+                    {
+                        first = list;
+                    }
+                    return;
+                }
+                cur = cur.next;
+            }
+
+        }
+
         public void Clear()
         {
             first = null;

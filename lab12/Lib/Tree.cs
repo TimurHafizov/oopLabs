@@ -196,9 +196,9 @@ namespace Lib
                 t.data = Transport;
             }
             else
-            if (t.data.GetName[0] > Transport.GetName[0] ||
-                (t.data.GetMagazineCost > Transport.GetMagazineCost &&
-                t.data.GetName[0] == Transport.GetName[0]))
+            if (t.data.Speed > Transport.Speed ||
+                (t.data.CountMen > Transport.CountMen &&
+                t.data.Speed == Transport.Speed))
             {
 
                 Data cris = Insert(t.left, Transport);
@@ -206,9 +206,9 @@ namespace Lib
                 t = Balanse(t);
             }
             else
-            if (t.data.GetName[0] < Transport.GetName[0] ||
-                (t.data.GetMagazineCost < Transport.GetMagazineCost &&
-                t.data.GetName[0] == Transport.GetName[0]))
+            if (t.data.Speed < Transport.Speed ||
+                (t.data.CountMen < Transport.CountMen &&
+                t.data.Speed == Transport.Speed))
             {
                 Data cris = Insert(t.right, Transport);
                 t.right = cris;
@@ -222,12 +222,13 @@ namespace Lib
             Transport c = null;
             if (cur != null)
             {
-                if (cur.data.GetName[0] == liter)
+                string s = cur.data.Speed.ToString();
+                if (s[0] == liter)
                 {
                     return cur.data;
                 }
                 else
-                if (cur.data.GetName[0] > liter)
+                if (s[0] > liter)
                 {
                     c = SearchCharBeginNameRecurcy(liter, cur.left);
                 }
@@ -244,7 +245,7 @@ namespace Lib
             if (t != null)
             {
                 s = Show(t.left, s, level + 5);
-                s += t.data.ShowMyTree(level) + "\n";
+                s += t.data.ToString() + "\n";
                 s = Show(t.right, s, level + 5);
             }
             return s;
@@ -282,13 +283,13 @@ namespace Lib
         }
         public MyTree(int capacity)
         {
-            
+            int s, c;
             for (int i = 0; i < capacity; i++)
             {
-                int speed = rand.Next(1, 800);
-                int countMen = rand.Next(3, 1000);
+                s = rand.Next(1, 800);
+                c = rand.Next(1, 1000);
 
-                AddElement(new Transport(speed, countMen));
+                AddElement(new Transport(s, c));
             }
         }
 
@@ -353,6 +354,7 @@ namespace Lib
         //    Array.Sort(arr);
         //    return new MyTree(arr);
         //}
+
         public override bool Equals(object o)
         {
             if (o is MyTree)
@@ -366,12 +368,14 @@ namespace Lib
                 return false;
             }
         }
+
         public override string ToString()
         {
             string s = "";
             s = Show(main, s);
             return s;
         }
+
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -380,4 +384,3 @@ namespace Lib
         #endregion
     }
 }
-

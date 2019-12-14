@@ -8,7 +8,6 @@ namespace Lib
     public class MyLinkedList : IEnumerable, ICloneable
     {
         static Random rand = new Random();
-        static string[] arrayName = { "Мед", "Холодильник", "Компьютер", "Ваза", "Медведь" };
 
 
         Transport data;
@@ -226,7 +225,21 @@ namespace Lib
             }
 
         }
-        
+
+        public void RemoveSeveralEl()
+        {
+            MyLinkedList cur = end;
+            while (cur != null)
+            {
+                if (cur.data.Speed % 2 == 0)
+                {
+                    Remove(cur.data);
+                }
+                cur = cur.next;
+            }
+        }
+
+
         public override string ToString()
         {
             MyLinkedList cur = end;
